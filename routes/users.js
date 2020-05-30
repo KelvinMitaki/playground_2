@@ -15,6 +15,10 @@ route.post("/register", async (req, res) => {
 });
 route.post("/login", async (req, res) => {
   try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = await User.find({ email, password });
+    res.send(user);
   } catch (error) {
     res.status(500).send(error);
   }
