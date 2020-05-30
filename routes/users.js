@@ -34,4 +34,13 @@ route.patch("/edit/:id", async (req, res) => {
   }
 });
 
+route.delete("/delete/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = route;
