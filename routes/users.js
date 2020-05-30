@@ -7,7 +7,7 @@ route.post("/register", async (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const age = req.body.age;
-    const user = new User(email, name, password, age);
+    const user = new User({ name, email, password, age });
     await user.save();
     res.send(user);
   } catch (error) {
