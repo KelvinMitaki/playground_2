@@ -1,9 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const userRoute = require("./routes/users");
 
 const app = express();
 
 const PORT = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(userRoute);
 
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));
 
