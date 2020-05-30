@@ -18,7 +18,16 @@ route.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    const user = await User.find({ email, password });
+    const user = await User.findOne({ email, password });
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+route.patch("/edit/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body);
     res.send(user);
   } catch (error) {
     res.status(500).send(error);
